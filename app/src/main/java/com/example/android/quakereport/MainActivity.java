@@ -13,19 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Words> words= new ArrayList<Words>();
+        ArrayList<Words> words= QueryUtils.extractEarthQuake();
 
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
-        words.add(new Words("2.1","Delhi","11111"));
+
 
         WordAdapter adapter =new WordAdapter(this,words);
         ListView listView=(ListView)findViewById(R.id.list);

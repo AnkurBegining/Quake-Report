@@ -8,9 +8,9 @@ public class Words {
 
     private String magnitude;
     private String place;
-    private String time;
+    private long time;
 
-    public Words(String magnitude, String place, String time){
+    public Words(String magnitude, String place, long time){
         this.magnitude=magnitude;
         this.place=place;
         this.time=time;
@@ -23,7 +23,8 @@ public class Words {
     public String getPlace(){
         return  place;
     }
-    public  String getTime(){
+    public long getTime(){
         return  time;
     }
+
 }

@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Lenovo on 15-02-2017.
@@ -37,11 +39,28 @@ public class WordAdapter extends ArrayAdapter {
         TextView placeView = (TextView)listView.findViewById(R.id.place_text_view);
         placeView.setText(currentWord.getPlace());
 
+        Date dateObject = new Date(currentWord.getTime());
+        String formattedDate = formatDate(dateObject);
+        String formattedTime = formatTime(dateObject);
+
+        TextView dateView = (TextView)listView.findViewById(R.id.date_text_view);
+        dateView.setText(formattedDate);
+
         TextView timeView = (TextView)listView.findViewById(R.id.time_text_view);
-        timeView.setText(currentWord.getTime());
+        timeView.setText(formattedTime);
 
         return  listView;
 
 
+    }
+
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
+    }
+
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
     }
 }
