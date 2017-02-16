@@ -7,12 +7,12 @@ package com.example.android.quakereport;
 public class Words {
 
     private String magnitude;
-    private String place;
+    private String Location;
     private long time;
 
-    public Words(String magnitude, String place, long time){
+    public Words(String magnitude, String Location, long time){
         this.magnitude=magnitude;
-        this.place=place;
+        this.Location=Location;
         this.time=time;
 
     }
@@ -20,11 +20,12 @@ public class Words {
     public String getMagnitude(){
         return magnitude;
     }
-    public String getPlace(){
-        return  place;
-    }
+
     public long getTime(){
         return  time;
     }
 
+    public String getLocation() {
+        return Location;
+    }
 }

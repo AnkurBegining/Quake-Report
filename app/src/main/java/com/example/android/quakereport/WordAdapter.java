@@ -17,7 +17,9 @@ import java.util.Date;
  * Created by Lenovo on 15-02-2017.
  */
 
+
 public class WordAdapter extends ArrayAdapter {
+    private static final String LOCATION_SEPARATOR = "of";
     public WordAdapter(Activity context, ArrayList<Words> arrayFlavor) {
         super(context,0, arrayFlavor);
     }
@@ -36,18 +38,38 @@ public class WordAdapter extends ArrayAdapter {
         TextView magitudeView =(TextView)listView.findViewById(R.id.magnitude_text_view);
         magitudeView.setText(currentWord.getMagnitude());
 
-        TextView placeView = (TextView)listView.findViewById(R.id.place_text_view);
-        placeView.setText(currentWord.getPlace());
-
         Date dateObject = new Date(currentWord.getTime());
         String formattedDate = formatDate(dateObject);
-        String formattedTime = formatTime(dateObject);
 
         TextView dateView = (TextView)listView.findViewById(R.id.date_text_view);
         dateView.setText(formattedDate);
 
+        String formattedTime = formatTime(dateObject);
         TextView timeView = (TextView)listView.findViewById(R.id.time_text_view);
         timeView.setText(formattedTime);
+
+        //Get the original location String from earthquake object and store that in variable
+
+        String originalLocation = currentWord.getLocation();
+        String primaryLocation;
+        String locationOffset;
+
+        if(originalLocation.contains(LOCATION_SEPARATOR)){
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);//Spilt before and after 'of'
+            locationOffset = parts[0] + LOCATION_SEPARATOR; //add 'of' after the spiliting;
+            primaryLocation = parts[1];
+        }
+        else{
+            locationOffset = getContext().getString(R.string.near_the); //set the default location offset to say "Near_the'
+            primaryLocation = originalLocation;
+        }
+
+        TextView primaryLocationView = (TextView)listView.findViewById(R.id.primaryLocation_text_view);
+        primaryLocationView.setText(primaryLocation);
+
+        TextView locationOffsetView = (TextView)listView.findViewById(R.id.locationOffset_text_view);
+        locationOffsetView.setText(locationOffset);
+
 
         return  listView;
 
